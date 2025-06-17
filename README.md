@@ -4,14 +4,53 @@ A TypeScript/JavaScript SDK for interacting with Odin.fun DEX on the Internet Co
 
 ## Installation
 
+### Option 1: Clone from GitHub (Recommended)
+
 ```bash
-npm install freya-ic-sdk
+# Clone the repository
+git clone https://github.com/humandebri/freya-ic-sdk-js.git
+cd freya-ic-sdk-js
+
+# Install dependencies
+npm install
+
+# Build the library
+npm run build
+
+# Use in your project
+# Copy the dist/ folder to your project or use relative imports
+```
+
+### Option 2: Direct Git Install
+
+```bash
+# Install directly from GitHub
+npm install git+https://github.com/humandebri/freya-ic-sdk-js.git
+
+# Or with specific branch/tag
+npm install git+https://github.com/humandebri/freya-ic-sdk-js.git#main
+```
+
+### Option 3: Submodule (For Git Projects)
+
+```bash
+# Add as git submodule
+git submodule add https://github.com/humandebri/freya-ic-sdk-js.git libs/freya-ic-sdk
+cd libs/freya-ic-sdk
+npm install
+npm run build
 ```
 
 ## Quick Start
 
+### After cloning and building:
+
 ```typescript
-import { FreyaClient, OdinFunAPI, Ed25519KeyIdentity } from 'freya-ic-sdk';
+// If using relative imports from cloned repo
+import { FreyaClient, OdinFunAPI, Ed25519KeyIdentity } from './freya-ic-sdk-js/dist';
+
+// If installed via npm git+
+import { FreyaClient, OdinFunAPI, Ed25519KeyIdentity } from 'freya-ic-sdk-js';
 
 // Generate a new identity or load existing one
 const identity = Ed25519KeyIdentity.generate();
@@ -203,6 +242,10 @@ async function liquidityProvider() {
 ## Development
 
 ```bash
+# Clone the repository
+git clone https://github.com/humandebri/freya-ic-sdk-js.git
+cd freya-ic-sdk-js
+
 # Install dependencies
 npm install
 
@@ -214,6 +257,25 @@ npm test
 
 # Lint
 npm run lint
+
+# Format code
+npm run format
+```
+
+## Publishing to NPM (For Maintainers)
+
+To make this available via `npm install freya-ic-sdk`:
+
+```bash
+# Update version in package.json
+npm version patch  # or minor/major
+
+# Publish to NPM
+npm publish
+
+# Create GitHub release
+git tag v1.0.0
+git push origin v1.0.0
 ```
 
 ## License
